@@ -35,3 +35,4 @@ build/
 chat_state.json
 /src/main/resources/application-env.properties
 /src/main/resources/application-env.yml
+/logs/
