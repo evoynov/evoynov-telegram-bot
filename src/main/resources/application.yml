@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: evoynov-tg-bot
+
+  profiles:
+    active: env
+
+  datasource:
+    hikari:
+      schema: app
+      maximum-pool-size: 2
+    url: jdbc:postgresql://localhost:5432/evoynov-tg-bot?autoReconnect=true
+    username: tg_bot
+    password: 1
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    change-log: classpath:/db/changelog/changelog.xml
+
+bot:
+  name: EVoynovTestBot
+  token: 0000000000:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

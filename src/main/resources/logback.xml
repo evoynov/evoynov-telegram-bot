@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+
+<configuration scan="true">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <property name="APP_NAME" value="evoynov-tg-bot" />
+    <property name="ROLLING_POLICY_MAX_INDEX" value="10"/>
+    <property name="TRIGGERING_POLICY_MAX_FILE_SIZE" value="20MB"/>
+
+    <property name="LOG_PATH" value="logs"/>
+    <property name="LOG_FILE_BASE" value="${LOG_PATH}/${APP_NAME}.log"/>
+
+    <appender name="BASE_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <file>${LOG_FILE_BASE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOG_FILE_BASE}.%i</fileNamePattern>
+            <maxIndex>${ROLLING_POLICY_MAX_INDEX}</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>${TRIGGERING_POLICY_MAX_FILE_SIZE}</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="BASE_FILE" />
+    </root>
+
+</configuration>
