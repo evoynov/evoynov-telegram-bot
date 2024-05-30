@@ -37,15 +37,15 @@ public class AbortInputFlowCommand implements Command {
     @Override
     public void acceptMessage(List<String> entries, ChatState chatState, EntryBot sender) throws TelegramApiException {
         switch (chatState.getCurrentStage()) {
-            case Stage.REG_NUMBER:
-            case Stage.REG_NAME:
+            case REG_NUMBER:
+            case REG_NAME:
                 chatState.resetMenuMessageId();
                 chatState.resetUserProfile();
                 Command.enterStage(Stage.NOT_AUTHORIZED, chatState, sender);
                 break;
-            case Stage.ENTER_CAR_NUMBER:
-            case Stage.ENTER_FULL_NAME:
-            case Stage.CHANGE_PROFILE_DETAILS:
+            case ENTER_CAR_NUMBER:
+            case ENTER_FULL_NAME:
+            case CHANGE_PROFILE_DETAILS:
                 chatState.resetMenuMessageId();
                 Command.enterStage(Stage.AUTH_MAIN_MENU, chatState, sender);
                 break;
